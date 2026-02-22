@@ -130,25 +130,6 @@ Because real-world cybersecurity includes cleanup.
 
 ---
 
-# 📸 Screenshots
-
-After uploading your screenshots to the repo from your phone, add them below like this:
-
-```
-![VM Provision](PASTE_IMAGE_LINK_HERE)
-![Agent Installed](PASTE_IMAGE_LINK_HERE)
-![Scan Triggered](PASTE_IMAGE_LINK_HERE)
-![Vulnerability Results]
-```
-
-To get the link:
-1. Tap the uploaded image
-2. Tap “Raw”
-3. Copy the URL
-4. Paste inside the parentheses
-
----
-
 # 🔥 What This Project Demonstrates
 
 - Vulnerability management workflow
