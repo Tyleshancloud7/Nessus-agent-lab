@@ -1,160 +1,252 @@
-# Nessus-agent-lab
-# 🛡️ Nessus Agent Deployment Lab – Windows 11 (Tyl-Win11)
+<p align="center">
+  <img src="https://img.shields.io/badge/Security-Vulnerability%20Management-blue?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Tool-Tenable%20Nessus-purple?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Focus-Agent%20Based%20Scanning-red?style=for-the-badge"/>
+</p>
 
-> ⚠️ IMPORTANT: Use `start.txt` as your trigger file.  
-> Not `dishsoap.lol`. We don’t talk about that decision.
+<h1 align="center">🛡️ Nessus Agent Deployment Lab</h1>
 
----
-
-## 🎯 Project Overview
-
-This project documents my full deployment of a **Tenable Nessus Agent** on a Windows 11 Virtual Machine (`Tyl-Win11`).
-
-This lab took me **3 days to complete** due to troubleshooting, configuration issues, and learning how agent-based scanning actually works in a real environment.
-
-No shortcuts.  
-No default passwords.  
-No quitting.
+<p align="center">
+Deploying and validating a Tenable Nessus Agent on a Windows 11 virtual machine to simulate a real vulnerability management workflow.
+</p>
 
 ---
 
-## 🖥️ Environment Details
+# 🎯 Project Overview
 
-- VM Name: `Tyl-Win11`
-- Operating System: Windows 11
-- Platform: Tenable Cloud
-- Scan Type: Basic Agent Scan (Triggered)
-- Trigger File: `start.txt`
+This project documents the **deployment and configuration of a Tenable Nessus Agent** on a Windows 11 virtual machine.
 
----
+The objective was to simulate how security teams deploy **agent-based vulnerability scanning** in enterprise environments.
 
-## 🔐 Security Reminder
+Unlike network scans, agent-based scanning allows organizations to:
 
-Do NOT use weak credentials.
+* Detect vulnerabilities on remote or roaming devices
+* Perform authenticated scanning
+* Improve visibility into endpoint security posture
 
-Example of what NOT to use:
-
-Username: hackerwannabe  
-Password: letmein123  
-
-If a VM stays online long enough with weak credentials, it will get breached.
-
-Always use strong, unique credentials.
+This lab required **three days of troubleshooting, configuration, and validation**, reflecting the real-world challenges security teams face during vulnerability management deployments.
 
 ---
 
-# ⚙️ Steps I Completed
+# 🧠 Real-World Scenario
+
+A security operations team needs to deploy **vulnerability monitoring across employee endpoints**.
+
+Because many devices operate remotely or outside the corporate network, traditional network scanning cannot reliably detect vulnerabilities.
+
+The organization therefore deploys **Tenable Nessus Agents** to endpoints to ensure:
+
+* Continuous vulnerability monitoring
+* Authenticated system assessment
+* Secure agent communication with the Tenable cloud platform
+
+This project demonstrates how a **Security Analyst or Vulnerability Management Engineer** would deploy and validate this system.
 
 ---
 
-## 1️⃣ Provisioned Windows 11 Virtual Machine
+# 🖥️ Lab Environment
 
-- Created a brand new Windows 11 VM
-- Created secure credentials (no defaults, no easy passwords)
-- Verified VM boot and system stability
-- Took note of VM name: `Tyl-Win11`
+| Component         | Details            |
+| ----------------- | ------------------ |
+| Virtual Machine   | `Tyl-Win11`        |
+| Operating System  | Windows 11         |
+| Platform          | Tenable Cloud      |
+| Scan Type         | Basic Agent Scan   |
+| Trigger Mechanism | File-based trigger |
+| Trigger File      | `start.txt`        |
 
 ---
 
-## 2️⃣ Created Agent Group
+# ⚙️ Deployment Workflow
+
+## 1️⃣ Provision Windows 11 Virtual Machine
+
+* Created a new Windows 11 VM
+* Configured secure credentials
+* Verified successful boot and OS functionality
+* Documented VM identifier: `Tyl-Win11`
+
+---
+
+## 2️⃣ Create Agent Group
 
 Navigation:
 
-Settings → Sensors → Nessus Agents → Agent Groups → + Add Agent Group
+Settings → Sensors → Nessus Agents → Agent Groups → **Add Agent Group**
 
-- Created a new agent group for this deployment
+Actions performed:
+
+* Created a dedicated **agent group**
+* Prepared group for endpoint enrollment
+
+Agent groups allow security teams to **organize devices and assign scans at scale**.
 
 ---
 
-## 3️⃣ Created Basic Agent Scan
+## 3️⃣ Configure Basic Agent Scan
 
-- Created new scan
-- Selected scan type: Basic Agent Scan
-- Selected the agent group created earlier
-- Configured scan as **Triggered Scan**
-- Set trigger filename as:
+Created a new scan using:
+
+Scan Type → **Basic Agent Scan**
+
+Configured parameters:
+
+* Target agent group
+* Scan policy
+* Trigger-based execution
+
+Trigger file configured as:
 
 `start.txt`
 
 ---
 
-## 4️⃣ Provisioned Tenable Agent
+## 4️⃣ Install Tenable Nessus Agent
 
-Steps completed:
+Installation steps:
 
-- Logged into Windows VM with secure credentials
-- Logged into Tenable Cloud portal
-- Navigated to:
+1. Logged into the Windows VM
+2. Accessed the Tenable Cloud portal
+3. Navigated to:
 
-Settings → Sensors → Nessus Agents → + Add Nessus Agent
+Settings → Sensors → Nessus Agents → **Add Nessus Agent**
 
-- Copied PowerShell installation command
-- Edited command in Notepad to:
-  - Set custom agent name
-  - Assign correct agent group
-- Opened PowerShell as Administrator
-- Executed installation command
-- Verified successful installation
+4. Copied the **PowerShell installation command**
+5. Modified command parameters:
 
----
+   * Custom agent name
+   * Correct agent group assignment
+6. Opened **PowerShell as Administrator**
+7. Executed installation command
 
-## 5️⃣ Triggered the Scan
-
-- Created file named `start.txt` in the configured trigger directory
-- Observed the file disappear
-  - This confirms the scan started
-- Returned to Tenable portal to monitor agent status
+The agent successfully registered with the Tenable platform.
 
 ---
 
-## 6️⃣ Verified Agent Link & Scan Results
+## 5️⃣ Trigger the Scan
 
-- Navigated to:
-  Settings → Sensors → Nessus Agents
-- Confirmed my agent (`Tyl-Win11`) appeared in portal
-- Waited 30–60 minutes for vulnerabilities to populate
-- Navigated to:
-  Scans → See All Details
-- Reviewed vulnerability results
+To start the scan:
 
----
+1. Created file:
 
-## 7️⃣ Cleanup (Operational Hygiene)
+`start.txt`
 
-- Deleted scan
-- Deleted agent group
-- Unlinked agent
-- Deleted virtual machine
+2. Placed file inside the configured trigger directory
+3. Observed file deletion
 
-Because real-world cybersecurity includes cleanup.
+File deletion indicates the **scan trigger was successfully processed**.
 
 ---
 
-# 🔥 What This Project Demonstrates
+## 6️⃣ Verify Agent and Scan Results
 
-- Vulnerability management workflow
-- Secure VM provisioning
-- Agent-based scanning configuration
-- Trigger-based scan execution
-- Real troubleshooting under pressure
-- Persistence
+Verification process:
+
+Navigation:
+
+Settings → Sensors → Nessus Agents
+
+Confirmed:
+
+* Agent `Tyl-Win11` successfully linked
+
+Next:
+
+Scans → **See All Details**
+
+Observed:
+
+* Vulnerabilities populating
+* Scan results updating
+
+Typical population time: **30–60 minutes**
+
+---
+
+## 🧹 Cleanup (Operational Hygiene)
+
+To maintain a clean environment:
+
+* Deleted scan configuration
+* Deleted agent group
+* Unlinked agent
+* Deleted Windows virtual machine
+
+Security labs should always end with **environment cleanup and resource removal**.
+
+---
+
+# 📊 Vulnerability Management Workflow
+
+This lab demonstrates a standard **enterprise vulnerability management lifecycle**:
+
+1️⃣ Asset provisioning
+2️⃣ Agent deployment
+3️⃣ Endpoint registration
+4️⃣ Vulnerability scanning
+5️⃣ Results analysis
+6️⃣ Environment cleanup
+
+---
+
+# 🛠 Skills Demonstrated
+
+* Vulnerability Management
+* Tenable Nessus Agent Deployment
+* Endpoint Security Monitoring
+* Virtual Machine Administration
+* PowerShell Execution
+* Security Troubleshooting
+* Scan Configuration and Validation
+
+---
+
+# 🔐 Security Best Practices
+
+Weak credentials remain one of the most common causes of system compromise.
+
+Never deploy systems with credentials such as:
+
+Username: `admin`
+Password: `letmein123`
+
+Instead:
+
+* Use strong passwords
+* Use unique credentials
+* Rotate credentials regularly
+
+---
+
+# 💡 Why Agent-Based Scanning Matters
+
+Agent-based scanning solves several limitations of traditional vulnerability scans:
+
+* Works on remote devices
+* Enables authenticated vulnerability detection
+* Provides continuous monitoring
+* Improves visibility for distributed workforces
+
+These capabilities make agent scanning a **critical component of modern vulnerability management programs**.
 
 ---
 
 # 💭 Final Thoughts
 
-This lab took me 3 days.
+This lab required multiple rounds of troubleshooting:
 
-Multiple configuration issues.  
-Agent linking delays.  
-Trigger mistakes.  
+* Agent linking delays
+* Trigger configuration issues
+* Scan execution verification
 
-But no quitting.
+Real cybersecurity work rarely functions perfectly on the first attempt.
 
-Cybersecurity isn’t about knowing everything.
-
-It’s about staying in the fight long enough to figure it out.
+Success comes from **persistence, investigation, and iterative problem solving**.
 
 And now?
 
-I’m in range.
+The agent is deployed.
+The scan runs.
+The vulnerabilities surface.
+
+Welcome to vulnerability management.
